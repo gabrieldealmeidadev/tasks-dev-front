@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { api } from "../api/client";
 import { useNavigate } from "react-router-dom";
+import { DarkMode } from "../components/DarkMode";
 
 export function Register() {
   const [name, setName] = useState("");
@@ -17,7 +18,6 @@ export function Register() {
     setMessage("");
     setIsSuccess(false);
 
-    // validações
     if (!name || !email || !password) {
       setMessage("Preencha todos os campos");
       return;
@@ -40,10 +40,9 @@ export function Register() {
         password,
       });
 
-      setMessage("Usuário criado com sucesso ");
+      setMessage("Usuário criado com sucesso");
       setIsSuccess(true);
 
-      // limpa campos
       setName("");
       setEmail("");
       setPassword("");
@@ -58,51 +57,72 @@ export function Register() {
   }
 
   return (
-    <div className="h-screen flex items-center justify-center">
-      <form
-        onSubmit={handleRegister}
-        className="bg-white p-6 rounded shadow w-80"
-      >
-        <h1 className="text-xl text-center mb-4">Cadastro</h1>
+    <div className="h-screen flex items-center justify-center px-4 relative">
+      <div className="absolute top-5 right-5">
+        <DarkMode />
+      </div>
 
-        {message && (
-          <p
-            className={`text-center mb-2 ${
-              isSuccess ? "text-green-500" : "text-red-500"
-            }`}
-          >
-            {message}
+      <div className="w-full max-w-md">
+        <form
+          onSubmit={handleRegister}
+          className="bg-card border border-custom rounded-2xl p-8 shadow-xl"
+        >
+          <h1 className="text-3xl font-semibold text-center mb-2">
+            Criar conta
+          </h1>
+
+          <p className="text-sm text-center mb-6 opacity-70">
+            Comece agora gratuitamente
           </p>
-        )}
 
-        <input
-          className="border w-full mb-2 p-2"
-          type="text"
-          value={name}
-          placeholder="Nome"
-          onChange={(e) => setName(e.target.value)}
-        />
+          {message && (
+            <p
+              className={`text-sm mb-4 text-center ${
+                isSuccess ? "text-green-500" : "text-red-500"
+              }`}
+            >
+              {message}
+            </p>
+          )}
 
-        <input
-          className="border w-full mb-2 p-2"
-          type="email"
-          value={email}
-          placeholder="Email"
-          onChange={(e) => setEmail(e.target.value)}
-        />
+          <input
+            className="w-full mb-3 p-3 rounded-lg border border-custom bg-transparent outline-none focus:ring-2 focus:ring-orange-500 transition"
+            type="text"
+            value={name}
+            placeholder="Nome"
+            onChange={(e) => setName(e.target.value)}
+          />
 
-        <input
-          className="border w-full mb-4 p-2"
-          type="password"
-          value={password}
-          placeholder="Senha"
-          onChange={(e) => setPassword(e.target.value)}
-        />
+          <input
+            className="w-full mb-3 p-3 rounded-lg border border-custom bg-transparent outline-none focus:ring-2 focus:ring-orange-500 transition"
+            type="email"
+            value={email}
+            placeholder="Email"
+            onChange={(e) => setEmail(e.target.value)}
+          />
 
-        <button className="bg-green-500 text-white w-full p-2 cursor-pointer">
-          Cadastrar
-        </button>
-      </form>
+          <input
+            className="w-full mb-5 p-3 rounded-lg border border-custom bg-transparent outline-none focus:ring-2 focus:ring-orange-500 transition"
+            type="password"
+            value={password}
+            placeholder="Senha"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+
+          <button className="btn-primary text-white w-full p-3 rounded-lg font-medium transition hover:scale-[1.02] active:scale-[0.98]">
+            Cadastrar
+          </button>
+
+          <div className="mt-5 text-center">
+            <a
+              href="/login"
+              className="text-sm opacity-80 hover:text-orange-500 transition"
+            >
+              Já tenho conta
+            </a>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

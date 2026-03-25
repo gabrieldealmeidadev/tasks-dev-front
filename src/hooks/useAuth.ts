@@ -13,6 +13,6 @@ export function useAuth() {
       return response.data;
     },
     retry: false,
-    enabled: false, // 👈 🔥 não roda automaticamente
+    enabled: true,
   });
 }

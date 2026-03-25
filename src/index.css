@@ -1,1 +1,66 @@
 @import "tailwindcss";
+
+:root {
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #0f172a;
+    --border: #e5e7eb;
+
+    --primary: #f97316;
+    --primary-hover: #ea580c;
+    --open: #eab308;
+    --in-progress: #3b82f6;
+    --in-review: #ef4444;
+    --done: #22c55e;
+}
+
+.dark {
+    --bg: #020617;
+    --card: #0f172a;
+    --text: #e2e8f0;
+    --border: #1e293b;
+    --primary: #fb923c;
+    --primary-hover: #f97316;
+    --open: #facc15;
+    --in-progress: #60a5fa;
+    --in-review: #f87171;
+    --done: #4ade80;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+}
+
+
+.bg-card {
+    background: var(--card);
+}
+
+.border-custom {
+    border-color: var(--border);
+}
+
+.btn-primary {
+    background: var(--primary);
+}
+
+.btn-primary:hover {
+    background: var(--primary-hover);
+}
+
+.status-open {
+    background: var(--open);
+}
+
+.status-in-progress {
+    background: var(--in-progress);
+}
+
+.status-in-review {
+    background: var(--in-review);
+}
+
+.status-done {
+    background: var(--done);
+}
